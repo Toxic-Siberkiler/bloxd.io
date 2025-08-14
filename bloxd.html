@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bloxd.io - Fan Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #00ffcc;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .content {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .content h2 {
+      color: #00ffcc;
+      margin-top: 40px;
+    }
+    .section {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    footer {
+      background-color: #1f1f1f;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #2c2c2c;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 900px;
+      text-align: center;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: #fff;
+    }
+    .play-button {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bloxd.io Fan Hub</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#updates">Updates</a>
+      <a onclick="openModal()">Game</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <section id="updates">
+      <h2>📰 Latest Updates</h2>
+
+      <div class="section">
+        <h3>New Map Released!</h3>
+        <p>Bloxd.io just dropped a brand-new parkour map with lava traps and hidden boosts. Try it out now!</p>
+      </div>
+
+      <div class="section">
+        <h3>Multiplayer Improvements</h3>
+        <p>Server lag reduced and new chat features added. You can now team up more easily with friends.</p>
+      </div>
+
+      <div class="section">
+        <h3>Skin Customization</h3>
+        <p>Customize your avatar with new skins and accessories unlocked through gameplay.</p>
+      </div>
+    </section>
+
+    <section id="game-info">
+      <h2>🧱 What You Can Do in Bloxd.io</h2>
+      <div class="section">
+        <ul>
+          <li>🏃‍♂️ **Parkour Mode** – Race through obstacle courses and reach the finish line first.</li>
+          <li>🛠️ **Build Mode** – Create structures using blocks in a sandbox environment.</li>
+          <li>⚔️ **DoodleCube** – Compete in drawing challenges and guess others’ creations.</li>
+          <li>🔫 **Peaceful & Combat Zones** – Explore areas with or without PvP enabled.</li>
+          <li>🧑‍🤝‍🧑 **Multiplayer** – Join public servers or play with friends in private rooms.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="controls">
+      <h2>🕹️ Controls</h2>
+      <div class="section">
+        <ul>
+          <li><strong>WASD</strong> – Move your character</li>
+          <li><strong>Space</strong> – Jump</li>
+          <li><strong>Shift</strong> – Sprint</li>
+          <li><strong>Mouse</strong> – Look around</li>
+          <li><strong>Left Click</strong> – Interact / Attack</li>
+          <li><strong>Right Click</strong> – Place block (in build mode)</li>
+          <li><strong>1–9</strong> – Select inventory slot</li>
+          <li><strong>T</strong> – Chat</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>💡 Multiplayer Tips</h2>
+      <div class="section">
+        <ul>
+          <li>Use the chat to coordinate with teammates.</li>
+          <li>Build defensively in PvP zones to protect your spawn.</li>
+          <li>Practice parkour maps to improve your timing and reflexes.</li>
+          <li>Customize your skin to stand out in the crowd.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div id="gameModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>🎮 Bloxd.io Game</h2>
+      <p>Click below to start playing Bloxd.io directly in this window.</p>
+      <button class="play-button" onclick="loadGame()">Play Now</button>
+      <div id="gameFrameContainer"></div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Bloxd.io Fan Hub. This is an unofficial site for informational purposes only.
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById("gameModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("gameModal").style.display = "none";
+      document.getElementById("gameFrameContainer").innerHTML = "";
+    }
+
+    function loadGame() {
+      document.getElementById("gameFrameContainer").innerHTML = `
+        <iframe src="https://bloxd.io" title="Bloxd.io Game"></iframe>
+      `;
+    }
+  </script>
+
+</body>
+</html>

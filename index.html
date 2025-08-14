@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to Bloxd.io Fan Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #0d0d0d; /* Even darker base */
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      color: #ccc;
+    }
+
+    .intro-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      animation: fadeIn 2s ease-in-out forwards;
+      background: radial-gradient(circle at center, #004040 0%, #0d0d0d 100%);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 64px;
+      color: #006666; /* Deep teal */
+      text-shadow: 0 0 20px #002222;
+      opacity: 0;
+      animation: slideDown 2s ease-out forwards;
+    }
+
+    .enter-button {
+      margin-top: 50px;
+      padding: 16px 32px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #eee;
+      background: linear-gradient(90deg, #004040, #002222);
+      border: 1px solid #006666;
+      border-radius: 10px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeButton 3.5s ease-in-out forwards;
+      box-shadow: 0 0 15px #003333;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .enter-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #005555;
+    }
+
+    .disclaimer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+      opacity: 0;
+      animation: fadeButton 4s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeButton {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 40px;
+      }
+      .enter-button {
+        font-size: 16px;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="intro-container">
+    <h1>Bloxd.io</h1>
+    <button class="enter-button" onclick="location.href='bloxd.html'">Enter Fan Hub</button>
+    <div class="disclaimer">
+      This is an unofficial site made by a fan named <strong>summer_king</strong>.
+    </div>
+  </div>
+
+</body>
+</html>
